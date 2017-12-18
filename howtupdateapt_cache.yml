@@ -1,7 +1,10 @@
 ---
 - hosts: all
-  sudo: yes
+  remote_user: administrator
   tasks:
    - name: Run the equivalent of "apt-get update" as a separate step
-     apt:
-       update_cache: yes
+     become: yes
+     become_method: sudo
+     yum:     
+      name: httpd
+      state: present
